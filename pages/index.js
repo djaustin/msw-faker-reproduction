@@ -1,14 +1,14 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 export default function Home({ book }) {
-  const [reviews, setReviews] = useState(null)
+  const [reviews, setReviews] = useState(null);
 
   const handleGetReviews = () => {
     // Client-side request are mocked by `mocks/browser.js`.
-    fetch('/reviews')
+    fetch("/reviews")
       .then((res) => res.json())
-      .then(setReviews)
-  }
+      .then(setReviews);
+  };
 
   return (
     <div>
@@ -27,17 +27,16 @@ export default function Home({ book }) {
         </ul>
       )}
     </div>
-  )
+  );
 }
 
 export async function getServerSideProps() {
   // Server-side requests are mocked by `mocks/server.js`.
-  const res = await fetch('https://my.backend/book')
-  const book = await res.json()
-
+  const res = await fetch("https://my.backend/book");
+  const book = await res.json();
   return {
     props: {
       book,
     },
-  }
+  };
 }
